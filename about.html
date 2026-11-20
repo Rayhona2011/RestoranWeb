@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biz haqimizda - Lazzat Restoran</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero { padding:140px 20px 60px; background:linear-gradient(135deg,#0f0f1a,#1a1a2e); text-align:center; }
+    .page-hero h1 { color:#fff; font-size:clamp(1.8rem,5vw,3rem); font-weight:800; }
+    .page-hero h1 span { color:#c8a96e; }
+    .page-hero p { color:rgba(255,255,255,0.6); margin-top:12px; }
+    .about-page { max-width:1100px; margin:0 auto; padding:70px 20px; }
+    .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; margin-top:50px; }
+    .team-card { background:#fff; border-radius:16px; padding:30px 20px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.07); transition:all 0.3s; }
+    .team-card:hover { transform:translateY(-5px); }
+    .team-avatar { width:80px; height:80px; background:linear-gradient(135deg,#c8a96e,#a8864e); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 16px; }
+    .team-card h3 { font-size:1rem; font-weight:700; color:#1a1a2e; margin-bottom:5px; }
+    .team-card p { color:#888; font-size:0.85rem; }
+    .values-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; margin-top:40px; }
+    .value-card { background:#fff; border-radius:16px; padding:28px; border-left:4px solid #c8a96e; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+    .value-card h3 { font-size:1rem; font-weight:700; color:#1a1a2e; margin-bottom:8px; }
+    .value-card p { color:#777; font-size:0.88rem; line-height:1.6; }
+    .timeline { position:relative; padding-left:30px; margin-top:40px; }
+    .timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:rgba(200,169,110,0.3); }
+    .timeline-item { position:relative; margin-bottom:30px; }
+    .timeline-item::before { content:''; position:absolute; left:-24px; top:4px; width:14px; height:14px; border-radius:50%; background:#c8a96e; border:3px solid #fff; box-shadow:0 0 0 3px rgba(200,169,110,0.3); }
+    .timeline-year { font-size:0.8rem; font-weight:700; color:#c8a96e; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .timeline-item h4 { font-size:1rem; font-weight:700; color:#1a1a2e; margin-bottom:5px; }
+    .timeline-item p { color:#888; font-size:0.88rem; line-height:1.5; }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Lazzat<span>.</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Bosh sahifa</a>
+    <a href="menu.html">Menyu</a>
+    <a href="about.html" class="active">Biz haqimizda</a>
+    <a href="contact.html">Kontakt</a>
+    <a href="index.html#reservation" class="nav-btn">Stol band qilish</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <h1>Biz <span>haqimizda</span></h1>
+  <p>Tariximiz, jamoamiz va qadriyatlarimiz</p>
+</div>
+
+<div class="about-page">
+
+  <!-- ABOUT TEXT -->
+  <div class="about-inner" style="margin-bottom:70px">
+    <div class="about-img">🏛️</div>
+    <div class="about-text">
+      <span>Tariximiz</span>
+      <h2>20 yil — 20 ta yutuq</h2>
+      <p>2004-yilda oddiy bir choyxona sifatida boshlangan "Lazzat" bugungi kunda Toshkentning eng mashhur milliy taomlar markaziga aylandi. Biz 20 yil davomida an'analarni asrab, zamonaviy talablarni ham hisobga olib keldik.</p>
+      <p>Bizning maqsadimiz — har bir mehmon uyiga xursand ketib, qaytib kelishni xohlasin. Bu oddiy vazifa emas, lekin biz bu yo'lda hech qachon to'xtamaymiz.</p>
+      <div class="about-stats">
+        <div class="stat"><h3>20+</h3><p>Yillik tajriba</p></div>
+        <div class="stat"><h3>500+</h3><p>Kunlik mehmon</p></div>
+        <div class="stat"><h3>50+</h3><p>Taom turi</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="section-header">
+    <span class="section-label">Qadriyatlarimiz</span>
+    <h2>Nima uchun biz?</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <h3>🌿 Sifat birinchi</h3>
+      <p>Har kuni yangi mahalliy mahsulotlar keltiriladi. Sifatdan hech qachon murosaga bormaymiz.</p>
+    </div>
+    <div class="value-card">
+      <h3>👨‍🍳 Tajribali jamoa</h3>
+      <p>Bizning oshpazlarimiz 10-20 yillik tajribaga ega. Har bir taom sevgi bilan tayyorlanadi.</p>
+    </div>
+    <div class="value-card">
+      <h3>❤️ Mehribon xizmat</h3>
+      <p>Har bir mehmon bizga alohida. Siz kutib olingan va qadrlanganligingizni his etishingiz lozim.</p>
+    </div>
+    <div class="value-card">
+      <h3>🏛️ An'analar</h3>
+      <p>Bobolar retsepti bo'yicha tayyorlangan taomlar — haqiqiy o'zbek mazzasini his eting.</p>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section-header" style="margin-top:60px">
+    <span class="section-label">Jamoamiz</span>
+    <h2>Bizning professional jamoa</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">👨‍🍳</div>
+      <h3>Behruz Raimov</h3>
+      <p>Bosh oshpaz (18 yil)</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍🍳</div>
+      <h3>Nilufar Yusupova</h3>
+      <p>Shirinliklar ustasi (12 yil)</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👨‍💼</div>
+      <h3>Jasur Toshmatov</h3>
+      <p>Restoran menejeri (8 yil)</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍💼</div>
+      <h3>Dildora Alimova</h3>
+      <p>Xizmat rahbari (10 yil)</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-header" style="margin-top:60px">
+    <span class="section-label">Tarixiy yo'l</span>
+    <h2>Bizning rivojlanish tarixi</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2004</div>
+      <h4>Lazzat choyxonasi ochildi</h4>
+      <p>Chilonzor tumanida 20 o'rinli kichik choyxona sifatida faoliyat boshladi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008</div>
+      <h4>Kengayish va yangi menyu</h4>
+      <p>Zal 80 o'ringacha kengaytirildi, yangi oshpazlar jalb qilindi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2013</div>
+      <h4>VIP xonalar ochildi</h4>
+      <p>To'y va tantanalar uchun alohida VIP xonalar qurildi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2018</div>
+      <h4>Yetkazib berish xizmati</h4>
+      <p>Shahar bo'ylab yetkazib berish xizmati yo'lga qo'yildi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <h4>20 yillik yubiley</h4>
+      <p>20 yillik faoliyatni nishonladik va yangi sahifani boshladik.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">Lazzat<span>.</span></div>
+      <p>An'anaviy o'zbek taomlari va zamonaviy xizmat.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sahifalar</h4>
+      <ul>
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="menu.html">Menyu</a></li>
+        <li><a href="about.html">Biz haqimizda</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="tel:+998901234567">+998 90 123 45 67</a></li>
+        <li><a href="#">Toshkent, Chilonzor</a></li>
+        <li><a href="admin/index.html">⚙️ Admin panel</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Lazzat Restoran. Barcha huquqlar himoyalangan.</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/data.js"></script>
+<script>
+  const hb = document.getElementById('hamburger');
+  const nl = document.getElementById('navLinks');
+  hb.addEventListener('click', () => { hb.classList.toggle('active'); nl.classList.toggle('open'); });
+</script>
+</body>
+</html>

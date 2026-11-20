@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Cafe | Toshkent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=3" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="#hero" class="logo">Family<span> Cafe</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero" class="active"    data-i18n="nav.home">Bosh sahifa</a></li>
+    <li><a href="#menu"                   data-i18n="nav.menu">Menyu</a></li>
+    <li><a href="#about"                  data-i18n="nav.about">Biz haqimizda</a></li>
+    <li><a href="#reservation"            data-i18n="nav.reservation">Bron</a></li>
+    <li><a href="#contact"                data-i18n="nav.contact">Kontakt</a></li>
+    <li><a href="admin/index.html" class="nav-btn">⚙ Admin</a></li>
+  </ul>
+  <div class="nav-controls">
+    <button class="theme-btn" id="themeToggle" title="Rejim">🌙</button>
+    <!-- LANGUAGE DROPDOWN -->
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-drop-btn" id="langDropBtn">
+        <span id="langFlag">Til</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <ul class="lang-menu" id="langMenu">
+        <li onclick="applyLang('uz');document.getElementById('langMenu').classList.remove('open')">O'zbek</li>
+        <li onclick="applyLang('ru');document.getElementById('langMenu').classList.remove('open')">Русский</li>
+        <li onclick="applyLang('en');document.getElementById('langMenu').classList.remove('open')">English</li>
+      </ul>
+    </div>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1547592166-23ac45744acd?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1600&q=80')"><div class="slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=1600&q=80')"><div class="slide-overlay"></div></div>
+  </div>
+  <div class="hero-dots">
+    <span class="dot active" data-index="0"></span><span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span><span class="dot" data-index="3"></span>
+    <span class="dot" data-index="4"></span><span class="dot" data-index="5"></span>
+    <span class="dot" data-index="6"></span><span class="dot" data-index="7"></span>
+    <span class="dot" data-index="8"></span><span class="dot" data-index="9"></span>
+    <span class="dot" data-index="10"></span><span class="dot" data-index="11"></span>
+    <span class="dot" data-index="12"></span><span class="dot" data-index="13"></span>
+    <span class="dot" data-index="14"></span>
+  </div>
+  <button class="hero-arrow prev" id="heroPrev">&#8249;</button>
+  <button class="hero-arrow next" id="heroNext">&#8250;</button>
+  <div class="hero-content">
+    <h1 id="heroTitle">O'zbekona <span data-i18n="hero.titleSpan">Milliy Taomlar</span></h1>
+    <p id="heroDesc" data-i18n="hero.desc">Oila va yaqinlaringiz davrasida an'anaviy retseptlar, tandirdan uzilgan issiq non va sog'ingan milliy taomlar.</p>
+    <div class="hero-btns">
+      <a href="#menu"        class="btn-primary"   id="heroBtn1" data-i18n="hero.btn1">🍽 Menyuni ko'rish</a>
+      <a href="#reservation" class="btn-outline"   id="heroBtn2" data-i18n="hero.btn2">📅 Stol bron qilish</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>15+</strong><span data-i18n="stat.years">Yil tajriba</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><strong>50K+</strong><span data-i18n="stat.guests">Mamnun mijoz</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><strong>30+</strong><span data-i18n="stat.dishes">Taom turi</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" data-i18n="feat.label">Nima uchun biz?</span>
+      <h2 id="featTitle">Bizning afzalliklarimiz</h2>
+      <p id="featSubtitle">Har bir mehmonimizga eng yaxshi xizmat ko'rsatish bizning asosiy maqsadimiz</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&q=80" alt="Oshpaz">
+          <div class="feature-card-overlay">
+            <span class="feature-card-icon">👨‍🍳</span>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3 id="feat1Title">Tajribali oshpazlar</h3>
+          <p id="feat1Desc">20+ yillik tajribaga ega milliy oshpazlarimiz har bir taomni sevgi va mehr bilan tayyorlaydi.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80" alt="Mahsulotlar">
+          <div class="feature-card-overlay">
+            <span class="feature-card-icon">🌿</span>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3 id="feat2Title">Tabiiy mahsulotlar</h3>
+          <p id="feat2Desc">Faqat mahalliy, yangi va sifatli mahsulotlardan foydalanamiz. Har kuni yangi yetkazib beriladi.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Muhit">
+          <div class="feature-card-overlay">
+            <span class="feature-card-icon">🏡</span>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3 id="feat3Title">Qulay muhit</h3>
+          <p id="feat3Desc">Oilaviy kechalar uchun ideal, issiq va qulay atmosfera. 200+ mehmon sig'adigan zallar.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card-img">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="Xizmat">
+          <div class="feature-card-overlay">
+            <span class="feature-card-icon">⚡</span>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3 id="feat4Title">Tezkor xizmat</h3>
+          <p id="feat4Desc">Buyurtmangiz 20-30 daqiqa ichida tayyor bo'ladi. Vaqtingizni qadrlaymiz.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-preview" id="menu">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" data-i18n="menu.label">Bizning taomlar</span>
+      <h2 data-i18n="menu.title" id="menu-title">Mazali <em>Menyumiz</em></h2>
+      <p data-i18n="menu.desc">O'zbek milliy taomlarining to'liq to'plami — har bir taom yurakdan tayyorlanadi</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" data-cat="barchasi" data-i18n="tab.all">🍽 Barchasi</button>
+      <button class="menu-tab" data-cat="taom"      data-i18n="tab.taom">🥘 Asosiy taomlar</button>
+      <button class="menu-tab" data-cat="salat"     data-i18n="tab.salat">🥗 Salatlar</button>
+      <button class="menu-tab" data-cat="ichimlik"  data-i18n="tab.ichimlik">🥤 Ichimliklar</button>
+      <button class="menu-tab" data-cat="non"       data-i18n="tab.non">🫓 Non</button>
+      <button class="menu-tab" data-cat="desert"    data-i18n="tab.desert">🍰 Desertlar</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80"
+          alt="Family Cafe restoran"
+          style="width:100%;height:100%;object-fit:cover;border-radius:20px;"
+        />
+        <div class="about-badge-card">
+          <span class="badge-num">15+</span>
+          <span class="badge-txt" data-i18n="stat.years">Yil tajriba</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-label" data-i18n="about.label">Biz haqimizda</span>
+        <h2 data-i18n="about.title" id="about-title">Family Cafe — <em>2010 yildan</em> beri xizmatda</h2>
+        <p data-i18n="about.p1">Biz 15 yildan ortiq vaqt davomida Toshkent markazida o'zbek milliy taomlarini tayyorlab kelmoqdamiz. Har bir taom — bu bizning qalbimiz va sevgimizning ifodasi.</p>
+        <p data-i18n="about.p2">Restoranmizda oilaviy kechalar, to'ylar, tug'ilgan kun va biznes uchrashuv uchun maxsus zallar mavjud. 200+ mehmon qabul qilish imkoniyatimiz bor.</p>
+        <div class="about-stats">
+          <div class="stat"><h3 class="count-up" data-target="15">0</h3><p data-i18n="stat.years">Yil tajriba</p></div>
+          <div class="stat"><h3 class="count-up" data-target="50000">0</h3><p data-i18n="stat.guests">Mamnun mijoz</p></div>
+          <div class="stat"><h3 class="count-up" data-target="30">0</h3><p data-i18n="stat.dishes">Taom turi</p></div>
+        </div>
+        <a href="#reservation" class="btn-primary" style="margin-top:10px;display:inline-block;" data-i18n="res.btn2">Stol bron qilish →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" data-i18n="testi.label">Mijozlar fikri</span>
+      <h2 data-i18n="testi.title" id="testi-title">Ular nima <em>deydi?</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="testi.q1">"Hayotimda yegan eng mazali osh mana shu yerda! Oshpazlarga rahmat, kayfiyatim zo'r bo'ldi."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div class="reviewer-info"><h4>Alisher N.</h4><span data-i18n="testi.r1">Doimiy mijoz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="testi.q2">"Oilamiz bilan har haftasiga kelamiz. Atmosfera juda yoqimli, bolalar uchun ham ajoyib joy."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div class="reviewer-info"><h4>Malika T.</h4><span data-i18n="testi.r2">Oilaviy mijoz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="testi.q3">"Biznes uchrashuv uchun mukammal joy. Xizmat tez, taomlar mazali, narxlar adolatli."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">B</div>
+          <div class="reviewer-info"><h4>Bobur R.</h4><span data-i18n="testi.r3">Biznes mijozi</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="reservation" id="reservation">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" data-i18n="res.label">Stol bron qilish</span>
+      <h2 data-i18n="res.title" id="res-title">Joyingizni <em>band qiling</em></h2>
+      <p data-i18n="res.desc">Xush kelibsiz! Stolni oldindan bron qilib qo'ying.</p>
+    </div>
+    <div class="reservation-inner">
+      <form id="reservationForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label id="res-label-name" data-i18n="res.name">Ismingiz</label>
+            <input type="text" id="resName" placeholder="..." required />
+          </div>
+          <div class="form-group">
+            <label id="res-label-phone" data-i18n="res.phone">Telefon</label>
+            <input type="tel" id="resPhone" placeholder="+998 90 123 45 67" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label id="res-label-date" data-i18n="res.date">Sana</label>
+            <input type="date" id="resDate" required />
+          </div>
+          <div class="form-group">
+            <label id="res-label-guests" data-i18n="res.guests">Mehmonlar soni</label>
+            <select id="resGuests">
+              <option>1-2 kishi</option>
+              <option>3-4 kishi</option>
+              <option>5-6 kishi</option>
+              <option>7-10 kishi</option>
+              <option>10+ kishi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label id="res-label-note" data-i18n="res.note">Izoh (ixtiyoriy)</label>
+          <textarea id="resNote" placeholder="..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="res-form-btn" data-i18n="res.btn">✓ Bron qilish</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" data-i18n="contact.label">Aloqa</span>
+      <h2 data-i18n="contact.title" id="contact-title">Biz bilan <em>bog'laning</em></h2>
+      <p data-i18n="contact.subtitle">Har qanday savol yoki takliflar uchun murojaat qiling</p>
+    </div>
+    <div class="contact-cards-grid">
+      <div class="contact-big-card">
+        <div class="contact-card-icon-wrap">📍</div>
+        <div class="contact-card-body">
+          <h3 data-i18n="contact.addr">Manzil</h3>
+          <p>Toshkent sh., Chilonzor tumani,<br>Bunyodkor ko'chasi, 15-uy</p>
+        </div>
+      </div>
+      <div class="contact-big-card">
+        <div class="contact-card-icon-wrap">📞</div>
+        <div class="contact-card-body">
+          <h3 data-i18n="contact.phone">Telefon</h3>
+          <p>+998 71 234 56 78</p>
+          <p>+998 90 123 45 67</p>
+        </div>
+      </div>
+      <div class="contact-big-card">
+        <div class="contact-card-icon-wrap">🕐</div>
+        <div class="contact-card-body">
+          <h3 data-i18n="contact.hours">Ish vaqti</h3>
+          <p data-i18n="contact.hoursVal">Dushanba – Yakshanba, 09:00  23:00</p>
+        </div>
+      </div>
+      <div class="contact-big-card">
+        <div class="contact-card-icon-wrap">📧</div>
+        <div class="contact-card-body">
+          <h3>Email</h3>
+          <p>info@familycafe.uz</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">Family<span> Cafe</span></div>
+        <p data-i18n="footer.desc">Haqiqiy o'zbekona mehmondo'stlik va qadrdon ta'mlar. 2010 yildan beri xizmatda.</p>
+        <div class="social-links">
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="Instagram">in</a>
+          <a href="#" title="YouTube">▶</a>
+          <a href="#" title="Telegram">✈</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.pages">Sahifalar</h4>
+        <ul>
+          <li><a href="#hero"        data-i18n="nav.home">Bosh sahifa</a></li>
+          <li><a href="#menu"        data-i18n="nav.menu">Menyu</a></li>
+          <li><a href="#about"       data-i18n="nav.about">Biz haqimizda</a></li>
+          <li><a href="#reservation" data-i18n="nav.reservation">Bron qilish</a></li>
+          <li><a href="#contact"     data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.dishes">Taomlar</h4>
+        <ul>
+          <li><a href="#menu">Osh (Palov)</a></li>
+          <li><a href="#menu">Shashlik</a></li>
+          <li><a href="#menu">Lag'mon</a></li>
+          <li><a href="#menu">Manti</a></li>
+          <li><a href="#menu">Dimlama</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="contact.label">Aloqa</h4>
+        <ul>
+          <li><a href="tel:+998712345678">+998 71 234 56 78</a></li>
+          <li><a href="mailto:info@familycafe.uz">info@familycafe.uz</a></li>
+          <li><a href="#">Toshkent, Chilonzor</a></li>
+          <li><a href="admin/index.html">⚙ Admin Panel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copy">© 2026 Family Cafe. Barcha huquqlar himoyalangan.</p>
+      <p data-i18n="footer.made">Ishlab chiqildi ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══ STOL TANLASH MODALI ══ -->
+<div class="table-modal-overlay" id="tableModalOverlay">
+  <div class="table-modal">
+    <div class="table-modal-icon">🍽️</div>
+    <h2>Family Cafe ga <span>Xush Kelibsiz!</span></h2>
+    <p>Davom etish uchun qaysi stolda o'tirishingizni tanlang</p>
+    <div class="table-select-dropdown">
+      <label>Stolni tanlang</label>
+      <select id="tableSelectDropdown">
+        <option value="">— Stol raqamini tanlang —</option>
+      </select>
+    </div>
+    <button class="table-confirm-btn" id="tableConfirmBtn" onclick="confirmTableFromDropdown()">
+      ✅ Tasdiqlash
+    </button>
+    <div class="table-grid-label">Yoki quyidagi jadvaldan tanlang</div>
+    <div class="table-select-grid" id="tableSelectGrid"></div>
+  </div>
+</div>
+
+<!-- ══ TANLANGAN STOL BADGE ══ -->
+<div class="selected-table-badge" id="selectedTableBadge"></div>
+
+<!-- ══ SAVAT OVERLAY ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- ══ SAVAT SIDEBAR ══ -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>🛒 Savat</h2>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItemsList"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Jami:</span>
+      <span class="cart-total-sum" id="cartTotalSum">0 so'm</span>
+    </div>
+    <button class="cart-order-btn" onclick="openOrderModal()">📦 Buyurtma berish</button>
+    <button class="cart-clear-btn" onclick="clearCart()">❌ Buyurtmani bekor qilish</button>
+  </div>
+</div>
+
+<!-- ══ FLOATING CART ══ -->
+<button class="float-cart-btn" id="floatCartBtn" onclick="toggleCart(event)">
+  🛒<span class="float-cart-count" id="cartCount">0</span>
+</button>
+
+<!-- ══ BUYURTMA MODALI ══ -->
+<div class="order-modal-overlay" id="orderModalOverlay">
+  <div class="order-modal">
+    <button class="order-modal-close" onclick="closeOrderModal()">✕</button>
+    <h2>📦 Buyurtmani tasdiqlash</h2>
+    <div class="order-table-info">🪑 Stol: <strong id="orderTableNum">—</strong></div>
+    <div id="orderSummaryBlock"></div>
+    <form id="orderForm">
+      <div class="order-form-group"><label>Ismingiz *</label><input type="text" id="orderName" placeholder="Ism Familiya" required></div>
+      <div class="order-form-group"><label>Telefon *</label><input type="tel" id="orderPhone" placeholder="+998 90 123 45 67" required></div>
+      <div class="order-form-group"><label>Manzil (yetkazib berish uchun)</label><input type="text" id="orderAddr" placeholder="Ko'cha, uy raqami..."></div>
+      <div class="order-form-group"><label>To'lov turi</label>
+        <select id="orderTime">
+          <option>Naqd pul</option><option>Click</option><option>Payme</option><option>Terminal</option>
+        </select>
+      </div>
+      <div class="order-form-group"><label>Izoh</label><textarea id="orderNote" placeholder="Qo'shimcha xohish..."></textarea></div>
+      <div class="order-total-final">Jami to'lov: <strong id="orderFinalSum">0 so'm</strong></div>
+      <button type="submit" class="order-submit-btn">✅ Buyurtmani tasdiqlash</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// Dropdown options ni to'ldirish
+document.addEventListener("DOMContentLoaded", () => {
+  const sel = document.getElementById("tableSelectDropdown");
+  if (sel) {
+    const tables = getTables();
+    tables.forEach(t => {
+      const opt = document.createElement("option");
+      opt.value = t.id;
+      opt.textContent = `${t.id}-stol${t.status==="band" ? " (band)" : ""}`;
+      if (t.status === "band") opt.disabled = true;
+      sel.appendChild(opt);
+    });
+  }
+});
+function confirmTableFromDropdown() {
+  const sel = document.getElementById("tableSelectDropdown");
+  if (!sel || !sel.value) { alert("Iltimos, stol raqamini tanlang!"); return; }
+  selectTable(parseInt(sel.value));
+}
+</script>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

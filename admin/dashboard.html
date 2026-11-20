@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Cafe — Admin Panel</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="ad-layout">
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="ad-sidebar" id="adSidebar">
+  <div class="ad-sidebar-logo">
+    <div class="ad-logo-wrap">
+      <div class="ad-logo-icon">🍽️</div>
+      <div class="ad-logo-text">
+        <span class="logo">Family<span>Cafe</span></span>
+        <small>Admin Panel</small>
+      </div>
+    </div>
+  </div>
+  <nav class="ad-nav">
+    <div class="ad-nav-section">Asosiy</div>
+    <button class="ad-tab-btn active" data-tab="dashboard" onclick="goTab('dashboard')"><span class="ad-icon">📊</span>Dashboard</button>
+    <button class="ad-tab-btn" data-tab="orders" onclick="goTab('orders')"><span class="ad-icon">🛍️</span>Buyurtmalar<span class="ad-notif-dot" id="newOrderDot" style="display:none"></span></button>
+    <button class="ad-tab-btn" data-tab="tables" onclick="goTab('tables')"><span class="ad-icon">🪑</span>Stollar</button>
+    <div class="ad-nav-section">Boshqaruv</div>
+    <button class="ad-tab-btn" data-tab="menu" onclick="goTab('menu')"><span class="ad-icon">🍔</span>Menyu</button>
+    <button class="ad-tab-btn" data-tab="inventory" onclick="goTab('inventory')"><span class="ad-icon">📦</span>Omborxona</button>
+    <button class="ad-tab-btn" data-tab="staff" onclick="goTab('staff')"><span class="ad-icon">🤵</span>Xodimlar</button>
+    <button class="ad-tab-btn" data-tab="finance" onclick="goTab('finance')"><span class="ad-icon">💰</span>Moliya</button>
+    <button class="ad-tab-btn" data-tab="crm" onclick="goTab('crm')"><span class="ad-icon">👥</span>CRM / Mijozlar</button>
+    <div class="ad-nav-section">Sayt</div>
+    <button class="ad-tab-btn" onclick="window.open('../index.html','_blank')"><span class="ad-icon">🌐</span>Saytni ko'rish</button>
+  </nav>
+  <div class="ad-sidebar-footer">
+    <button class="logout-btn" onclick="adminLogout()"><span>🚪</span>Chiqish</button>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<div class="ad-main">
+  <div class="ad-topbar">
+    <div class="ad-topbar-left">
+      <button class="ad-menu-toggle" id="menuToggle">☰</button>
+      <h1 id="pageTitle">Dashboard</h1>
+    </div>
+    <div class="ad-topbar-right">
+      <span id="clockEl" style="color:var(--text2);font-size:.82rem;"></span>
+      <span class="ad-admin-badge">👤 Admin</span>
+    </div>
+  </div>
+
+  <div class="ad-content">
+
+  <!-- ══ 1. DASHBOARD ══ -->
+  <div class="ad-tab-content active" id="tab-dashboard">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="sc-icon">🛍️</div><div><div class="sc-val" id="st-total">0</div><div class="sc-lbl">Jami buyurtmalar</div></div></div>
+      <div class="stat-card blue"><div class="sc-icon">🆕</div><div><div class="sc-val" id="st-new">0</div><div class="sc-lbl">Yangi buyurtmalar</div></div></div>
+      <div class="stat-card green"><div class="sc-icon">💰</div><div><div class="sc-val" id="st-rev" style="font-size:1rem;">0</div><div class="sc-lbl">Bugungi daromad</div></div></div>
+      <div class="stat-card orange"><div class="sc-icon">🪑</div><div><div class="sc-val" id="st-tables">0</div><div class="sc-lbl">Band stollar</div></div></div>
+      <div class="stat-card purple"><div class="sc-icon">🍽</div><div><div class="sc-val" id="st-menu">0</div><div class="sc-lbl">Menyu taomlar</div></div></div>
+    </div>
+
+    <!-- Top Sellers Chart -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px" class="dgrid2">
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>🏆 Top taomlar</h2></div>
+        <div class="ad-panel-body" id="topDishesEl"></div>
+      </div>
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>📋 So'nggi buyurtmalar</h2><button class="btn-gold btn-sm" onclick="goTab('orders')">Hammasi →</button></div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Mijoz</th><th>Stol</th><th>Summa</th><th>Holat</th></tr></thead><tbody id="recentOrdersBody"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 2. BUYURTMALAR ══ -->
+  <div class="ad-tab-content" id="tab-orders">
+    <div class="ad-panel">
+      <div class="ad-panel-header">
+        <h2>🛍️ Buyurtmalar</h2>
+        <div class="filter-bar" style="gap:7px">
+          <button class="btn-outline active" data-of="all" onclick="filterOrders('all',this)">Hammasi</button>
+          <button class="btn-outline" data-of="yangi" onclick="filterOrders('yangi',this)">🆕 Yangi</button>
+          <button class="btn-outline" data-of="qabul" onclick="filterOrders('qabul',this)">✅ Qabul</button>
+          <button class="btn-outline" data-of="oshpaz" onclick="filterOrders('oshpaz',this)">👨‍🍳 Oshpazda</button>
+          <button class="btn-outline" data-of="tayyor" onclick="filterOrders('tayyor',this)">🍽 Tayyor</button>
+          <button class="btn-outline" data-of="yetkazildi" onclick="filterOrders('yetkazildi',this)">🏁 Bajarildi</button>
+          <button class="btn-outline" data-of="bekor" onclick="filterOrders('bekor',this)">❌ Bekor</button>
+        </div>
+      </div>
+      <div class="order-cards" id="orderCardsWrap"></div>
+    </div>
+  </div>
+
+  <!-- ══ 3. STOLLAR ══ -->
+  <div class="ad-tab-content" id="tab-tables">
+    <div class="ad-panel">
+      <div class="ad-panel-header">
+        <h2>🪑 Stollar holati (15 ta)</h2>
+        <button class="btn-gold" onclick="resetAllTables()">🔄 Hammasini bo'shatish</button>
+      </div>
+      <div class="ad-panel-body">
+        <div style="display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:50%;background:#22c55e;display:block"></span><span style="font-size:.88rem;color:var(--text2)">Bo'sh</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:50%;background:#ef4444;display:block"></span><span style="font-size:.88rem;color:var(--text2)">Band</span></div>
+        </div>
+        <div class="tables-admin-grid" id="tablesAdminGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 4. MENYU ══ -->
+  <div class="ad-tab-content" id="tab-menu">
+    <div class="ad-panel">
+      <div class="ad-panel-header">
+        <h2>🍔 Menyu boshqaruvi</h2>
+        <button class="btn-gold" onclick="openMenuModal()">➕ Yangi taom</button>
+      </div>
+      <div class="ad-panel-body">
+        <div class="filter-bar" style="margin-bottom:16px">
+          <input class="ad-search" id="menuSearch" placeholder="🔍 Taom qidirish...">
+          <button class="btn-outline active" data-mf="all" onclick="filterMenuAdmin('all',this)">Hammasi</button>
+          <button class="btn-outline" data-mf="taom" onclick="filterMenuAdmin('taom',this)">🥘 Taomlar</button>
+          <button class="btn-outline" data-mf="ichimlik" onclick="filterMenuAdmin('ichimlik',this)">🥤 Ichimlik</button>
+          <button class="btn-outline" data-mf="non" onclick="filterMenuAdmin('non',this)">🫓 Non</button>
+          <button class="btn-outline" data-mf="desert" onclick="filterMenuAdmin('desert',this)">🍰 Desert</button>
+          <button class="btn-outline" data-mf="salat" onclick="filterMenuAdmin('salat',this)">🥗 Salat</button>
+        </div>
+        <div class="menu-admin-cards" id="menuAdminGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 5. OMBORXONA ══ -->
+  <div class="ad-tab-content" id="tab-inventory">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px" class="dgrid2">
+      <div class="ad-panel">
+        <div class="ad-panel-header">
+          <h2>📦 Ombor holati</h2>
+          <button class="btn-gold" onclick="openInvModal()">➕ Mahsulot qo'shish</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mahsulot</th><th>Qoldiq</th><th>Min.</th><th>Holat</th><th>Amal</th></tr></thead>
+            <tbody id="inventoryBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>⚠️ Kam qolgan mahsulotlar</h2></div>
+        <div class="ad-panel-body" id="lowStockEl"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 6. XODIMLAR ══ -->
+  <div class="ad-tab-content" id="tab-staff">
+    <div class="ad-panel">
+      <div class="ad-panel-header">
+        <h2>🤵 Xodimlar va rollar</h2>
+        <button class="btn-gold" onclick="openStaffModal()">➕ Xodim qo'shish</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ism</th><th>Rol</th><th>Telefon</th><th>Oylik</th><th>Sotuvlar</th><th>Amal</th></tr></thead>
+          <tbody id="staffBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 7. MOLIYA ══ -->
+  <div class="ad-tab-content" id="tab-finance">
+    <div class="stats-grid" style="margin-bottom:22px">
+      <div class="stat-card green"><div class="sc-icon">💵</div><div><div class="sc-val" id="fin-in">0</div><div class="sc-lbl">Jami tushum</div></div></div>
+      <div class="stat-card red"><div class="sc-icon">📤</div><div><div class="sc-val" id="fin-ex">0</div><div class="sc-lbl">Xarajatlar</div></div></div>
+      <div class="stat-card"><div class="sc-icon">📊</div><div><div class="sc-val" id="fin-pr">0</div><div class="sc-lbl">Sof foyda</div></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px" class="dgrid2">
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>💳 To'lov turlari</h2></div>
+        <div class="ad-panel-body" id="payStatsEl"></div>
+      </div>
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>➕ Xarajat kiritish</h2></div>
+        <div class="ad-panel-body">
+          <form id="expenseForm">
+            <div class="ad-form-group"><label>Tur</label><select id="expType"><option>Ijara</option><option>Oylik</option><option>Masalliq</option><option>Kommunal</option><option>Boshqa</option></select></div>
+            <div class="ad-form-group"><label>Summa (so'm)</label><input type="number" id="expAmt" placeholder="500000" min="0"></div>
+            <div class="ad-form-group"><label>Izoh</label><input type="text" id="expNote" placeholder="..."></div>
+            <button type="submit" class="ad-form-submit">💾 Saqlash</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="ad-panel" style="margin-top:20px">
+      <div class="ad-panel-header"><h2>📋 Xarajatlar tarixi</h2></div>
+      <div class="table-wrap"><table><thead><tr><th>Sana</th><th>Tur</th><th>Summa</th><th>Izoh</th><th>Amal</th></tr></thead><tbody id="expBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ══ 8. CRM ══ -->
+  <div class="ad-tab-content" id="tab-crm">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px" class="dgrid2">
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>👥 Mijozlar bazasi</h2></div>
+        <div class="table-wrap"><table><thead><tr><th>Ism</th><th>Telefon</th><th>Buyurtmalar</th><th>Jami</th><th>Bonus</th></tr></thead><tbody id="crmBody"></tbody></table></div>
+      </div>
+      <div class="ad-panel">
+        <div class="ad-panel-header"><h2>💬 Sharhlar</h2><button class="btn-gold" onclick="openReviewModal()">➕ Sharh qo'shish</button></div>
+        <div class="ad-panel-body" id="reviewsEl"></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /ad-content -->
+</div><!-- /ad-main -->
+</div><!-- /ad-layout -->
+
+<!-- ══ MODALS ══ -->
+
+<!-- Menu Modal -->
+<div class="ad-modal-overlay" id="menuModal">
+  <div class="ad-modal">
+    <button class="modal-close" onclick="closeAdModal('menuModal')">✕</button>
+    <div class="modal-h" id="menuModalTitle">Yangi taom qo'shish</div>
+    <form id="menuItemForm">
+      <input type="hidden" id="mId">
+      <div class="ad-form-grid">
+        <div class="ad-form-group"><label>Nomi *</label><input type="text" id="mName" placeholder="Osh (Palov)" required></div>
+        <div class="ad-form-group"><label>Kategoriya</label><select id="mCat"><option value="taom">🥘 Asosiy taom</option><option value="ichimlik">🥤 Ichimlik</option><option value="non">🫓 Non</option><option value="desert">🍰 Desert</option><option value="salat">🥗 Salat</option></select></div>
+        <div class="ad-form-group"><label>Narxi (so'm) *</label><input type="number" id="mPrice" placeholder="35000" min="0" required></div>
+        <div class="ad-form-group"><label>Rasm URL</label><input type="text" id="mImg" placeholder="https://..."></div>
+        <div class="ad-form-group full"><label>Tavsif *</label><textarea id="mDesc" placeholder="Taom haqida..." required></textarea></div>
+      </div>
+      <button type="submit" class="ad-form-submit">💾 Saqlash</button>
+    </form>
+  </div>
+</div>
+
+<!-- Inventory Modal -->
+<div class="ad-modal-overlay" id="invModal">
+  <div class="ad-modal">
+    <button class="modal-close" onclick="closeAdModal('invModal')">✕</button>
+    <div class="modal-h">Mahsulot qo'shish / yangilash</div>
+    <form id="invForm">
+      <input type="hidden" id="invId">
+      <div class="ad-form-grid">
+        <div class="ad-form-group full"><label>Mahsulot nomi *</label><input type="text" id="invName" placeholder="Mol go'sht" required></div>
+        <div class="ad-form-group"><label>O'lchov birligi</label><select id="invUnit"><option>kg</option><option>litr</option><option>dona</option><option>g</option></select></div>
+        <div class="ad-form-group"><label>Joriy miqdor *</label><input type="number" id="invQty" placeholder="25" min="0" step="0.1" required></div>
+        <div class="ad-form-group"><label>Minimum miqdor</label><input type="number" id="invMin" placeholder="5" min="0" step="0.1"></div>
+        <div class="ad-form-group"><label>Narxi (so'm / birlik)</label><input type="number" id="invPrice" placeholder="85000" min="0"></div>
+      </div>
+      <button type="submit" class="ad-form-submit">💾 Saqlash</button>
+    </form>
+  </div>
+</div>
+
+<!-- Staff Modal -->
+<div class="ad-modal-overlay" id="staffModal">
+  <div class="ad-modal">
+    <button class="modal-close" onclick="closeAdModal('staffModal')">✕</button>
+    <div class="modal-h" id="staffModalTitle">Yangi xodim</div>
+    <form id="staffForm">
+      <input type="hidden" id="sfId">
+      <div class="ad-form-grid">
+        <div class="ad-form-group"><label>Ism *</label><input type="text" id="sfName" required placeholder="Ism Familiya"></div>
+        <div class="ad-form-group"><label>Rol</label><select id="sfRole"><option value="admin">👑 Admin</option><option value="kassir">💵 Kassir</option><option value="ofitsiant">🤵 Ofitsiant</option><option value="oshpaz">👨‍🍳 Oshpaz</option></select></div>
+        <div class="ad-form-group"><label>Telefon</label><input type="tel" id="sfPhone" placeholder="+998 90 000 00 00"></div>
+        <div class="ad-form-group"><label>Oylik (so'm)</label><input type="number" id="sfSalary" placeholder="3000000" min="0"></div>
+      </div>
+      <button type="submit" class="ad-form-submit">💾 Saqlash</button>
+    </form>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="ad-modal-overlay" id="reviewModal">
+  <div class="ad-modal">
+    <button class="modal-close" onclick="closeAdModal('reviewModal')">✕</button>
+    <div class="modal-h">Sharh qo'shish</div>
+    <div class="ad-form-group"><label>Mijoz nomi</label><input type="text" id="rvName" placeholder="Alisher N."></div>
+    <div class="ad-form-group"><label>Baho (1-5)</label><select id="rvRating"><option>5 ⭐</option><option>4 ⭐</option><option>3 ⭐</option><option>2 ⭐</option><option>1 ⭐</option></select></div>
+    <div class="ad-form-group"><label>Sharh matni</label><textarea id="rvText" placeholder="Sharh matni..." style="width:100%;padding:11px 14px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-family:inherit;font-size:.9rem;outline:none;resize:vertical;min-height:80px;"></textarea></div>
+    <button class="ad-form-submit" onclick="saveReview()">💾 Saqlash</button>
+  </div>
+</div>
+
+<!-- CHEK MODAL -->
+<div class="ad-modal-overlay" id="checkModal">
+  <div class="ad-modal" style="max-width:380px">
+    <button class="modal-close" onclick="closeAdModal('checkModal')">✕</button>
+    <div class="modal-h">🧾 Buyurtma Cheki</div>
+    <div id="checkContent"></div>
+    <button class="ad-form-submit" onclick="printCheck()" style="margin-top:14px">🖨️ Chop etish</button>
+  </div>
+</div>
+
+<div class="ad-overlay" id="adOverlay"></div>
+<div class="ad-toast" id="adminToast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  setInterval(()=>{const e=document.getElementById('clockEl');if(e)e.textContent=new Date().toLocaleTimeString('uz-UZ',{hour:'2-digit',minute:'2-digit'});},1000);
+  document.getElementById('menuToggle')?.addEventListener('click',()=>{document.getElementById('adSidebar').classList.toggle('open');document.getElementById('adOverlay').classList.toggle('show');});
+  document.getElementById('adOverlay')?.addEventListener('click',()=>{document.getElementById('adSidebar').classList.remove('open');document.getElementById('adOverlay').classList.remove('show');});
+  const dg=document.querySelectorAll('.dgrid2');
+  function checkGrid(){dg.forEach(g=>{g.style.gridTemplateColumns=window.innerWidth<700?'1fr':'1fr 1fr';});}
+  window.addEventListener('resize',checkGrid); checkGrid();
+</script>
+</body>
+</html>

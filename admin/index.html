@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Family Cafe</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>Family<span>Cafe</span></h1>
+      <p>Boshqaruv paneli</p>
+    </div>
+    <h2 style="text-align:center;">Xush Kelibsiz!</h2>
+    <p class="login-sub" style="text-align:center;">Tizimga kirish uchun ma'lumotlarni kiriting</p>
+    <div class="login-error" id="loginError">❌ Login yoki parol noto'g'ri!</div>
+    <form id="loginForm">
+      <div class="l-group">
+        <label>Login</label>
+        <input type="text" id="adminUser" placeholder="Login" autocomplete="username" required>
+      </div>
+      <div class="l-group">
+        <label>Parol</label>
+        <input type="password" id="adminPass" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="login-btn">Kirish →</button>
+    </form>
+    <a href="../index.html" class="login-back">← Saytga qaytish</a>
+  </div>
+</div>
+<script src="../js/data.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

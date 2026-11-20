@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menyu - Lazzat Restoran</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero { padding: 140px 20px 60px; background: linear-gradient(135deg, #0f0f1a, #1a1a2e); text-align: center; }
+    .page-hero h1 { color: #fff; font-size: clamp(1.8rem,5vw,3rem); font-weight: 800; }
+    .page-hero h1 span { color: #c8a96e; }
+    .page-hero p { color: rgba(255,255,255,0.6); margin-top: 12px; font-size: 1rem; }
+    .menu-page { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+    .menu-page .menu-tabs { justify-content: flex-start; margin-bottom: 36px; }
+    .menu-section-title { font-size: 1.3rem; font-weight: 700; color: #1a1a2e; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 2px solid rgba(200,169,110,0.3); }
+    .menu-search { width: 100%; max-width: 400px; padding: 13px 20px; border: 2px solid #e8e8e8; border-radius: 30px; font-size: 0.95rem; outline: none; margin-bottom: 32px; transition: all 0.3s; }
+    .menu-search:focus { border-color: #c8a96e; }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">Lazzat<span>.</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Bosh sahifa</a>
+    <a href="menu.html" class="active">Menyu</a>
+    <a href="about.html">Biz haqimizda</a>
+    <a href="contact.html">Kontakt</a>
+    <a href="index.html#reservation" class="nav-btn">Stol band qilish</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <h1>Bizning <span>Menyumiz</span></h1>
+  <p>Tanlovni oson qilish uchun barchasi bir joyda</p>
+</div>
+
+<div class="menu-page">
+  <input type="text" class="menu-search" id="menuSearch" placeholder="🔍 Taom nomini kiriting...">
+
+  <div class="menu-tabs" id="menuTabs">
+    <button class="menu-tab active" data-cat="all">🍴 Barchasi</button>
+    <button class="menu-tab" data-cat="asosiy">🍽️ Asosiy</button>
+    <button class="menu-tab" data-cat="shorva">🍲 Sho'rva</button>
+    <button class="menu-tab" data-cat="salat">🥗 Salat</button>
+    <button class="menu-tab" data-cat="ichimlik">☕ Ichimlik</button>
+    <button class="menu-tab" data-cat="shirinlik">🍮 Shirinlik</button>
+  </div>
+
+  <div class="menu-grid" id="menu-items"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">Lazzat<span>.</span></div>
+      <p>An'anaviy o'zbek taomlari va zamonaviy xizmat ko'rsatish.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sahifalar</h4>
+      <ul>
+        <li><a href="index.html">Bosh sahifa</a></li>
+        <li><a href="menu.html">Menyu</a></li>
+        <li><a href="about.html">Biz haqimizda</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aloqa</h4>
+      <ul>
+        <li><a href="tel:+998901234567">+998 90 123 45 67</a></li>
+        <li><a href="#">Toshkent, Chilonzor</a></li>
+        <li><a href="admin/index.html">⚙️ Admin panel</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Lazzat Restoran. Barcha huquqlar himoyalangan.</p>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/data.js"></script>
+<script>
+  let currentCat = 'all';
+  function renderAll() {
+    const grid = document.getElementById('menu-items');
+    const search = document.getElementById('menuSearch').value.toLowerCase();
+    let items = getMenuItems();
+    if (currentCat !== 'all') items = items.filter(i => i.cat === currentCat);
+    if (search) items = items.filter(i => i.name.toLowerCase().includes(search) || i.desc.toLowerCase().includes(search));
+    grid.innerHTML = items.length ? items.map(item => `
+      <div class="menu-card">
+        <div class="menu-card-img">${item.emoji}</div>
+        <div class="menu-card-body">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <div class="menu-card-footer">
+            <span class="price">${formatPrice(item.price)}</span>
+            <button class="add-btn" onclick="addCart('${item.name}', this)">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('') : `<div style="grid-column:1/-1;text-align:center;padding:50px;color:#888"><div style="font-size:3rem;margin-bottom:12px">🍽️</div><p>Taom topilmadi</p></div>`;
+  }
+
+  document.querySelectorAll('.menu-tab').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentCat = this.dataset.cat;
+      renderAll();
+    });
+  });
+
+  document.getElementById('menuSearch').addEventListener('input', renderAll);
+
+  function addCart(name, btn) {
+    btn.style.transform = 'scale(1.4) rotate(90deg)';
+    setTimeout(() => btn.style.transform = '', 300);
+    const t = document.querySelector('.toast');
+    t.innerHTML = `<span style="color:#c8a96e">✅</span> "${name}" savatchaga qo'shildi!`;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // hamburger
+  const hb = document.getElementById('hamburger');
+  const nl = document.getElementById('navLinks');
+  hb.addEventListener('click', () => { hb.classList.toggle('active'); nl.classList.toggle('open'); });
+
+  renderAll();
+</script>
+</body>
+</html>
